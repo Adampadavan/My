@@ -14,7 +14,7 @@
 .zona {
   position: absolute;
   display: block;
-  background-color: rgba(255, 0.2, 0.2, 0.2); /* 0.2 ha tesztelni akarod láthatóvá */
+  background-color: rgba(255, 0, 0, 0); /* 0.2 ha tesztelni akarod láthatóvá */
 }
 
 .zona1 {
