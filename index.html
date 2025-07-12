@@ -2,8 +2,18 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
+<div class="kep-container">
+  <img src="fanni_card.png" alt="Valami" class="alapkep">
+
+  <!-- Láthatatlan, kattintható terület -->
+  <a href="tel:+36702760549" class="zona zona1"></a>
+  <a href="mailto:takacsfanni2017@gmail.com" class="zona zona2"></a>
+<a href="https://maps.app.goo.gl/hMiUH6kQzXQ9wK4M8" class="zona zona3"></a>
+<a href="fanni.vcf" type="text/vcard" class="zona zona4"></a>
+</div>
+<link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Takács Fanni - Névjegy</title>
     <style>
         body {
@@ -14,48 +24,22 @@
         }
         .container {
             position: relative;
-            width: 400px;
-            margin: 30px auto;
+            width: 100%;
+            margin: auto;
         }
         .container img {
-            width: 100%;
-            height: auto;
-            display: block;
+             width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
         }
         .clickable {
             position: absolute;
             display: block;
         }
-        #phone {
-            top: 880px;
-            left: 45px;
-            width: 310px;
-            height: 30px;
-        }
-        .email {
-            top: 940px;
-            left: 45px;
-            width: 310px;
-            height: 30px;
-        }
-        .vcf-download {
-            top: 1080px;
-            left: 45px;
-            width: 310px;
-            height: 60px;
-        }
-    </style>
-</head>
-<body>
- <img src="fanni_card.png" width="920" height="2048" alt="Planets"
-usemap="#planetmap">
+{    overflow: auto;}
 
-<map name="planetmap">
-  <area shape="rect" coords="50, 1175, 853, 1260" href="tel:+36702760549"></a>
-  <area shape="rect" coords="50, 1325, 853, 1410" href="mailto:takacsfanni2017@gmail.com"></a>
-  <area shape="rect" coords="50, 1475, 853, 1560" href="https://maps.app.goo.gl/hMiUH6kQzXQ9wK4M8"></a>
-  <area shape="rect" coords="217, 1680, 690, 1765" href="fanni.vcf" type="text/vcard"></a>
-</map>
-    </div>
-</body>
+            </style>
+</head>
+
 </html>
