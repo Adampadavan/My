@@ -1,0 +1,44 @@
+.kep-container {
+  position: relative;
+  width: 100%;
+  max-width: 3000px;
+  margin: auto;
+}
+
+.alapkep {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.zona {
+  position: absolute;
+  display: block;
+  background-color: rgba(255, 0.2, 0.2, 0.2); /* 0.2 ha tesztelni akarod láthatóvá */
+}
+
+.zona1 {
+  top: 57.5%;
+  left: 5.7%;
+  width: 89%;
+  height: 4.5%;
+}
+
+.zona2 {
+  top: 64.9%;
+  left: 5.7%;
+  width: 89%;
+  height: 4.5%;
+}
+.zona3 {
+  top: 72.3%;
+  left: 5.7%;
+  width: 89%;
+  height: 4.5%;
+}
+.zona4 {
+  top: 81.95%;
+  left: 23.2%;
+  width: 53.9%;
+  height: 5%;
+}
