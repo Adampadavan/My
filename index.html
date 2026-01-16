@@ -1,45 +1,162 @@
-
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<div class="kep-container">
-  <img src="fanni_card.png" alt="Valami" class="alapkep">
+<meta charset="UTF-8">
+<title>Fandámia – Nemsokára indulunk</title>
 
-  <!-- Láthatatlan, kattintható terület -->
-  <a href="tel:+36702760549" class="zona zona1"></a>
-  <a href="mailto:takacsfanni2017@gmail.com" class="zona zona2"></a>
-<a href="https://maps.app.goo.gl/hMiUH6kQzXQ9wK4M8" class="zona zona3"></a>
-<a href="fanni.vcf" type="text/vcard" class="zona zona4"></a>
-</div>
-<link rel="stylesheet" href="style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Takács Fanni - Névjegy</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #f0f0f0;
-            font-family: sans-serif;
-        }
-        .container {
-            position: relative;
-            width: 100%;
-            margin: auto;
-        }
-        .container img {
-             width: 100%;
-    height: auto;
-    max-width: 100%;
-    display: block;
-        }
-        .clickable {
-            position: absolute;
-            display: block;
-        }
-{    overflow: auto;}
+<script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css">
 
-            </style>
+<style>
+/* ===== NYUGIS HÁTTÉR ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(180deg, hsl(220, 50%, 5%), hsl(230, 70%, 3%));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.title {
+  position: relative;
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+/* ===== SZÖVEG ===== */
+.title .text {
+  font-family: system-ui, sans-serif;
+  font-weight: 400;
+  font-size: calc(20vw / var(--word-total));
+  line-height: 1.0;
+  white-space: nowrap;
+}
+
+/* ===== WRITE EFFECT ===== */
+.title .write .word {
+  color: hsl(0, 0%, 85%);
+  text-shadow: 0 0 0.15em currentColor;
+  animation: write linear both;
+  position: relative;
+}
+
+/* ===== LÉZER EFFECT ===== */
+.title .laser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(4px) contrast(12);
+  pointer-events: none;
+}
+
+.title .laser .word {
+  color: hsl(0, 100%, 70%);
+  text-shadow: 0 0 0.2em currentColor;
+  transform: translateZ(6px);
+  animation: laser linear both;
+}
+
+/* ===== ANIMÁCIÓK ===== */
+.title .write .word,
+.title .laser .word {
+  animation-duration: 4s;
+  animation-delay: calc(0.3s + var(--word-index) * 160ms);
+  animation-iteration-count: infinite;
+}
+
+.title:hover .word {
+  animation-play-state: paused;
+}
+
+@keyframes write {
+  from, 30% {
+    clip-path: polygon(-20% 0%, -15% 0%, -15% 100%, -20% 100%);
+  }
+  70%, to {
+    clip-path: polygon(-15% 0%, 120% 0%, 120% 100%, -15% 100%);
+  }
+}
+
+@keyframes laser {
+  from, 30% {
+    clip-path: polygon(-20% 0%, -15% 0%, -15% 100%, -20% 100%);
+  }
+  70%, to {
+    clip-path: polygon(115% 0%, 120% 0%, 120% 100%, 115% 100%);
+  }
+}
+
+/* ===== SZIKRÁZÁS BETŰK KÖRÜL ===== */
+.word-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: hsl(0, 100%, 70%);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: spark 0.3s forwards;
+}
+
+@keyframes spark {
+  0% {
+    transform: translate(0,0) scale(0.5);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(calc(-10px + 20px*var(--rx)), calc(-10px + 20px*var(--ry))) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(-15px + 30px*var(--rx)), calc(-15px + 30px*var(--ry))) scale(0);
+    opacity: 0;
+  }
+}
+</style>
 </head>
+<body>
 
+<div class="title">
+  <span class="text write" data-splitting="words">
+    Fandámia<br/>
+    Az ajándékozás művészete<br/>
+    Nemsokára indulunk
+  </span>
+
+  <span aria-hidden="true" class="text laser" data-splitting="words">
+    Fandámia<br/>
+    Az ajándékozás művészete<br/>
+    Nemsokára indulunk
+  </span>
+</div>
+
+<script>
+Splitting();
+
+// SZIKRÁK GENERÁLÁSA minden word-hez
+document.querySelectorAll('.write .word').forEach(word => {
+  const sparkCount = 3; // szikrák száma szóként
+  const rect = word.getBoundingClientRect();
+
+  for(let i=0; i<sparkCount; i++){
+    const spark = document.createElement('div');
+    spark.classList.add('word-spark');
+    spark.style.setProperty('--rx', Math.random());
+    spark.style.setProperty('--ry', Math.random());
+    word.appendChild(spark);
+
+    // animáció indítása szó megjelenésekor
+    word.addEventListener('animationiteration', () => {
+      spark.style.animation = 'none';
+      void spark.offsetWidth; // reset
+      spark.style.animation = '';
+    });
+  }
+});
+</script>
+
+</body>
 </html>
+
